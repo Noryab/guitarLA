@@ -18,8 +18,20 @@ const Blog = ({ results }) => {
   );
 };
 
+export async function getStaticProps() {
+  const url = `${process.env.API_URL}/blogs`;
+  const response = await fetch(url);
+  const results = await response.json();
+
+  return {
+    props: {
+      results,
+    },
+  };
+}
+
 // dynamic content
-export async function getServerSideProps() {
+/* export async function getServerSideProps() {
   const url = `${process.env.API_URL}/blogs`;
   const response = await fetch(url);
   const results = await response.json();
@@ -31,5 +43,5 @@ export async function getServerSideProps() {
     },
   };
 }
-
+ */
 export default Blog;

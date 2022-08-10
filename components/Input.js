@@ -6,7 +6,7 @@ import { formatDate } from "../helpers";
 import styles from "../styles/Input.module.css";
 
 const Input = ({ result }) => {
-  const { title, description, content, image, published_at, id } = result;
+  const { title, description, content, image, published_at, id, url } = result;
 
   return (
     <article>
@@ -22,7 +22,7 @@ const Input = ({ result }) => {
         <h3>{title}</h3>
         <p className={styles.dateAt}>{formatDate(published_at)}</p>
         <p className={styles.description}>{description}</p>
-        <Link href={`/blog/${id}`}>
+        <Link href={`/blog/${url}`}>
           <a className={styles.linkInput}>Read</a>
         </Link>
       </div>

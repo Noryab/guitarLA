@@ -5,9 +5,9 @@ import { formatDate } from "../../helpers";
 import styles from "../../styles/Input.module.css";
 
 const InputBlog = ({ result }) => {
-  const { content, image, description, published_at, title } = result;
+  const { content, image, description, published_at, title, url } = result;
   return (
-    <Layout>
+    <Layout page={title}>
       <main className="contenedor">
         <h1 className="heading">{title}</h1>
         <article className={styles.input}>
@@ -28,7 +28,36 @@ const InputBlog = ({ result }) => {
   );
 };
 
-export async function getServerSideProps({ query: { id } }) {
+export async function getStaticPaths() {
+  const url = `${process.env.API_URL}/blogs`;
+  const response = await fetch(url);
+  const results = await response.json();
+
+  const paths = results.map((result) => ({
+    params: {
+      url: result.url,
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params: { url } }) {
+  const urlPost = `${process.env.API_URL}/blogs?url=${url}`;
+  const response = await fetch(urlPost);
+  const result = await response.json();
+
+  return {
+    props: {
+      result: result[0],
+    },
+  };
+}
+
+/* export async function getServerSideProps({ query: { id } }) {
   const url = `${process.env.API_URL}/blogs/${id}`;
   const response = await fetch(url);
   const result = await response.json();
@@ -40,5 +69,5 @@ export async function getServerSideProps({ query: { id } }) {
     },
   };
 }
-
+ */
 export default InputBlog;
