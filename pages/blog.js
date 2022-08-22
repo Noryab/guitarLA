@@ -19,7 +19,7 @@ const Blog = ({ results }) => {
 };
 
 export async function getStaticProps() {
-  const url = `${process.env.API_URL}/blogs`;
+  const url = `${process.env.API_URL}/blogs?_sort=createdAt:desc`;
   const response = await fetch(url);
   const results = await response.json();
 
