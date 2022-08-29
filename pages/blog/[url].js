@@ -5,7 +5,7 @@ import { formatDate } from "../../helpers";
 import styles from "../../styles/Input.module.css";
 
 const InputBlog = ({ result }) => {
-  const { content, image, description, published_at, title, url } = result;
+  const { content, image, published_at, title } = result;
   return (
     <Layout page={title}>
       <main className="contenedor">
@@ -19,7 +19,7 @@ const InputBlog = ({ result }) => {
             alt={`Input image ${title}`}
           />
           <div className={styles.content}>
-            <p className={styles.dateAt}>{formatDate(published_at)}</p>
+            <p className={styles.dateAt}>{published_at}</p>
             <p className={styles.text}>{content}</p>
           </div>
         </article>

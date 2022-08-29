@@ -3,7 +3,6 @@ import Product from "./Product";
 import styles from "../styles/List.module.css";
 
 const List = ({ results }) => {
-  console.log(results);
   return (
     <div className={styles.list}>
       {results.map((result) => (

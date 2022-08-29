@@ -3,7 +3,7 @@ import List from "../components/List";
 
 const Store = ({ results }) => {
   return (
-    <Layout page={"Virtual store"}>
+    <Layout page={"Virtual-store"}>
       <main className="contenedor">
         <h1 className="heading">Guitars</h1>
         <List results={results} />

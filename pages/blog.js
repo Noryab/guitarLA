@@ -1,18 +1,13 @@
 import Layout from "../components/Layout";
-import Input from "../components/Input";
-import styles from "../styles/Blog.module.css";
+
+import ListBlog from "../components/ListBlog";
 
 const Blog = ({ results }) => {
   console.log(results);
   return (
-    <Layout page={"Virtual Blog"}>
+    <Layout page={"Virtual-Blog"}>
       <main className="contenedor">
-        <h2 className="heading">Blog</h2>
-        <div className={styles.blog}>
-          {results.map((result) => (
-            <Input key={result.id} result={result} />
-          ))}
-        </div>
+        <ListBlog results={results} />
       </main>
     </Layout>
   );

@@ -3,11 +3,12 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const Layout = ({ children, page }) => {
+const Layout = ({ children, page, product }) => {
+  const title = `GitarLA-${page}`;
   return (
     <div>
       <Head>
-        <title>GitarLA - {page}</title>
+        <title>{title}</title>
         <meta name="description" content="Web site of Guitars" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,13 +17,15 @@ const Layout = ({ children, page }) => {
           rel="stylesheet"
         />
       </Head>
-      <Header />
-
+      <Header product={product} />
       {children}
-
       <Footer />
     </div>
   );
+};
+
+Layout.defaultProps = {
+  product: null,
 };
 
 export default Layout;

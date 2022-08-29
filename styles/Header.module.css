@@ -3,6 +3,7 @@
     background-size: cover;
     background-position: 50%;
     padding: 5rem 0;
+    position: relative;
 }
 
 .bar {
@@ -16,13 +17,15 @@
         flex-direction: row;
         justify-content: space-between;
     }
-
+ 
 }
 
 .navigation {
     margin-top: 5rem;    
     display: flex;
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 @media (min-width: 768px) {
@@ -44,4 +47,91 @@
 
 .navigation a:hover{
     background-color: var(--primary);
+}
+
+.model {
+ color: var(--blanco);   
+ margin-top: 5rem;
+ text-align: center;
+}
+
+@media (min-width:768px) {
+    .model {
+        width: 50%;
+        text-align: left;
+       }
+          
+}
+
+.model h2 {
+    font-size: 8rem;
+}
+
+.model p:first-of-type {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    font-size: 2.2rem;
+}
+
+.price {
+    font-size: 3rem;
+    color: var(--primary);
+    font-weight: 900;
+    line-height: 0;
+}
+
+.linkInput {
+    margin-top: 2rem;    
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--blanco);
+    border: 2px solid var(--primary);
+    padding: 1rem 5rem;
+    transition-property: background-color;
+    transition-duration: .5s;
+
+}
+
+.linkInput:hover{
+    background-color: var(--primary);
+    color: var(--blanco);
+}
+
+.product {
+    display: none;
+}
+
+@media (min-width:768px) {
+    .product {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: -8px;
+        animation-name: showImage;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        animation-delay: 0;
+        animation-timing-function: ease-in-out;
+    }
+        
+}
+
+@keyframes showImage {
+    0% {
+        opacity: 0;
+        transform: translate(-10rem);
+    }
+    50% {
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
 }

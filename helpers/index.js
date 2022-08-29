@@ -1,4 +1,4 @@
-export const formatDate = (date) => {
+export function formatDate(date) {
   const newDate = new Date(date);
 
   const options = {
@@ -7,4 +7,4 @@ export const formatDate = (date) => {
     day: "2-digit",
   };
   return newDate.toLocaleDateString("es-ES", options);
-};
+}

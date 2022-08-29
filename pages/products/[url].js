@@ -1,10 +1,28 @@
+import { useState } from "react";
 import Image from "next/image";
 import Layout from "../../components/Layout";
 
 import styles from "../../styles/Product.module.css";
 
-const Product = ({ result }) => {
-  const { name, image, price, description } = result[0];
+const Product = ({ result, addCart }) => {
+  const [amount, setAmount] = useState(1);
+  const { name, image, price, description, id } = result[0];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (amount < 1) {
+      alert("Amount no valid");
+    }
+    const productSelected = {
+      id,
+      image: image.url,
+      name,
+      price,
+      amount,
+    };
+    addCart(productSelected);
+  };
+
   return (
     <Layout page={`Guitar ${name}`}>
       <div className={styles.product}>
@@ -20,9 +38,12 @@ const Product = ({ result }) => {
           <p className={styles.description}>{description}</p>
           <p className={styles.price}>${price}</p>
 
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <label>Amount:</label>
-            <select>
+            <select
+              value={amount}
+              onChange={(e) => setAmount(parseInt(e.target.value))}
+            >
               <option value="">-- Select --</option>
               <option value="1">1</option>
               <option value="2">2</option>

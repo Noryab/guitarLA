@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { formatDate } from "../helpers";
 import styles from "../styles/Input.module.css";
 
 const Input = ({ result }) => {
-  const { title, description, content, image, published_at, id, url } = result;
+  const { title, description, image, published_at, url } = result;
+  const [datePublished, setDatePublished] = useState("");
+
+  useEffect(() => setDatePublished(formatDate(published_at)));
 
   return (
     <article>
@@ -20,8 +23,9 @@ const Input = ({ result }) => {
       />
       <div className={styles.content}>
         <h3>{title}</h3>
-        <p className={styles.dateAt}>{formatDate(published_at)}</p>
+        <p className={styles.dateAt}>{datePublished}</p>
         <p className={styles.description}>{description}</p>
+
         <Link href={`/blog/${url}`}>
           <a className={styles.linkInput}>Read</a>
         </Link>
